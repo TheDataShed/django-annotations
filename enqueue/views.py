@@ -9,7 +9,8 @@ def dummy_method(json_string):
 
 def enqueue(request):
     if request.method == "POST":
-        # TODO:
+        # TODO: Correct method.
         django_rq.enqueue(dummy_method, request.body)
+        return HttpResponse(status=204)
     else:
         return HttpResponseForbidden()
