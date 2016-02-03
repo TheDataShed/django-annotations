@@ -36,6 +36,7 @@ def index_create(request):
             response = HttpResponse(status=303)
             response["Location"] = reverse("read_update_delete",
                                            kwargs={"pk": serializer.data["id"]})
+            response["Access-Control-Allow-Origin"] = request.META["HTTP_ORIGIN"]
             return response
     else:
         return HttpResponseForbidden()
@@ -56,11 +57,14 @@ def read_update_delete(request, pk):
             response = HttpResponse(status=303)
             response["Location"] = reverse("read_update_delete",
                                            kwargs={"pk": serializer.data["id"]})
+            response["Access-Control-Allow-Origin"] = request.META["HTTP_ORIGIN"]
             return response
     elif request.method == "DELETE":
         annotation = get_object_or_404(models.Annotation, pk=pk)
         annotation.delete()
-        return HttpResponse(status=204)
+        response = HttpResponse(status=204)
+        response["Access-Control-Allow-Origin"] = request.META["HTTP_ORIGIN"]
+        return response
     else:
         return HttpResponseForbidden()
 
