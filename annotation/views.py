@@ -33,6 +33,8 @@ def index_create(request):
         serializer = serializers.AnnotationSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
+            return JSONResponse(serializer.data, status=201)
+            # TODO: The below is what *should* happen...
             response = HttpResponse(status=303)
             response["Location"] = reverse("read_update_delete",
                                            kwargs={"pk": serializer.data["id"]})
@@ -53,6 +55,8 @@ def read_update_delete(request, pk):
         serializer = serializers.AnnotationSerializer(annotation, data=data)
         if serializer.is_valid():
             serializer.save()
+            return JSONResponse(serializer.data, status=200)
+            # TODO: The below is what *should* happen...
             response = HttpResponse(status=303)
             response["Location"] = reverse("read_update_delete",
                                            kwargs={"pk": serializer.data["id"]})
