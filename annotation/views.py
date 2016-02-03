@@ -74,7 +74,9 @@ def search(request):
         query = {k: v for k, v in request.GET.items()}
         annotations = models.Annotation.objects.filter(**query)
         serializer = serializers.AnnotationSerializer(annotations, many=True)
-        return JSONResponse({"total": len(serializer.data), "rows": serializer.data})
+        response = JSONResponse({"total": len(serializer.data), "rows": serializer.data})
+        response["Access-Control-Allow-Origin"] = request.META["HTTP_ORIGIN"]
+        return response
     else:
         return HttpResponseForbidden()
 
