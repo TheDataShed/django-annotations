@@ -109,7 +109,7 @@ STATIC_URL = '/static/'
 
 RQ_QUEUES = {
     "default": {
-        "HOST": "localhost",
+        "HOST": "shedis",
         "PORT": 6379,
         "DB": 0,
         "DEFAULT_TIMEOUT": 600,
