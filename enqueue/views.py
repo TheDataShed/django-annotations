@@ -1,12 +1,13 @@
 import django_rq
+import json
+import re
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from . import models
-import json, re
 
 
 def dummy_method(json_string):
-
 	rows = json.loads(json_string)["myrows"]
 	engines = []
 
@@ -34,6 +35,7 @@ def dummy_method(json_string):
 		x+=1
 
 
+@csrf_exempt
 def enqueue(request):
 	if request.method == "POST":
 		# TODO: Correct method.
