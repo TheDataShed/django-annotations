@@ -1,0 +1,22 @@
+import uuid
+from django.db import models
+
+# Create your models here.
+
+class Engine(models.Model):
+	id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+	name = models.CharField(max_length=4096, blank=False, null=False)
+	power = models.CharField(max_length=4096, blank=False, null=False)
+	cubic_capacity = models.CharField(max_length=4096, blank=False, null=False)
+	torque = models.CharField(max_length=4096, blank=False, null=False)
+	top_speed = models.CharField(max_length=4096, blank=False, null=False)
+	acceleration = models.CharField(max_length=4096, blank=False, null=False)
+	average_consumption = models.CharField(max_length=4096, blank=False, null=False)
+	c02_emission = models.CharField(max_length=4096, blank=False, null=False)
+	emission_category = models.CharField(max_length=4096, blank=False, null=False)
+	start_stop_system = models.CharField(max_length=4096, blank=False, null=False)
+
+	# @classmethod
+	# def create(cls, name):
+	# 	engine = cls(name=name)
+	# 	return engine

@@ -2,7 +2,7 @@ import django_rq
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
 from . import models
-import json, re
+import json
 
 
 def dummy_method(json_string):
