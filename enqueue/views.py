@@ -8,7 +8,8 @@ from . import models
 
 
 def dummy_method(json_string):
-	rows = json.loads(json_string)["myrows"]
+	js_dcode = json_string.decode('utf-8')
+	rows = json.loads(js_dcode)["myrows"]
 	engines = []
 
 	for row in rows[0]:
@@ -29,7 +30,7 @@ def dummy_method(json_string):
 		i = 0
 		while i <= 3:
 			# engines[i]["attributes"].append({"attribute_name": filtered_values[i]})
-			attribute = models.Attribute.objects.create(engine=engine[i], name="attribute_name", value=filtered_values[i])
+			attribute = models.Attribute.objects.create(engine=engines[i], name="attribute_name", value=filtered_values[i])
 			attribute.save()
 			i+=1
 		x+=1
