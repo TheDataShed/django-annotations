@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r"^enqueue/?", include("enqueue.urls")),
     url(r"^/?", include("annotation.urls")),
+    url(r'^admin/rq/', include('django_rq_dashboard.urls'))
 ]

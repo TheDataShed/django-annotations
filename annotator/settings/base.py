@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'annotation',
     'django_rq',
+    'django_rq_dashboard',
     'enqueue',
     'corsheaders',
 )
@@ -114,6 +115,18 @@ RQ_QUEUES = {
         "DB": 0,
         "DEFAULT_TIMEOUT": 600,
     }
+}
+RQ = {
+    'host': 'shedis',
+    'port': 6379,
+    'db': 0,
+    'password': None,
+    'socket_timeout': None,
+    'connection_pool': None,
+    'charset': 'utf-8',
+    'errors': 'strict',
+    'decode_responses': False,
+    'unix_socket_path': None,
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
