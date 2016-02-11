@@ -40,7 +40,7 @@ def index_create(request):
                                            kwargs={"pk": serializer.data["id"]})
             return response
         else:
-            return HttpResponseForbidden(str(serializer.errors))
+            return HttpResponseForbidden()
     else:
         return HttpResponseForbidden()
 
