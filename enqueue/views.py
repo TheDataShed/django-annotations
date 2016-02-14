@@ -28,12 +28,13 @@ def dummy_method(json_string):
 
 	x = 0
 	table_rows = [] 
-	while x <= len(rows) - 1:
+	findId = re.compile(r'(?:["]\b)([\w\s-]*)')
+	while x <= len(rows) - 1:		
 		row = Row()
 		row.attribute_values = []
 		for row_value in rows[x].values():
 			if ">" in row_value:
-				annotation_id = row_value[47:83]
+				annotation_id = findId.findall(row_value)[1]
 				row.name = Annotation.objects.get(pk=annotation_id).quote
 			if ">" not in row_value and row_value != "":
 				row.attribute_values.append(row_value)				
@@ -51,31 +52,6 @@ def dummy_method(json_string):
 		 	engine_value = models.Attribute_Value.objects.create(engine_attribute=engine_attribute, value=attribute)
 		 	engine_value.save()
 		i+=0
-
-
-
-
-
-	# x = 0
-	# while x <= len(rows) - 1:
-	# 	filtered_values = []
-
-	# 	for value in rows[x].values(): 
-	# 		if ">" in value:
-	# 			print(value[48:]) 
-	# 		if value != "" and ">" not in value:
-	# 			filtered_values.append(value)
-
-	# 	i = 0
-	# 	while i <= 3:	
-	# 		print(rows[x].values()[0])	
-	# 		#attribute_name = Annotation.objects.get(pk=1)
-	# 		#print("attrib name: " + attribute_name.quote)		
-	# 		#attribute = models.Attribute.objects.create(engine=engines[i], name="attribute_name", value=filtered_values[0])
-	# 		#attribute.save()
-	# 		i+=1
-	# 	x+=1
-
 
 @csrf_exempt
 def enqueue(request):
